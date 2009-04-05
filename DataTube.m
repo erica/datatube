@@ -7,24 +7,26 @@
 @synthesize array;
 @synthesize reversed;
 
+- (void) clear
+{
+	if (self.array) [self.array release];
+	self.array = [[NSMutableArray alloc] init];
+	[self.array release];
+}
+
+
 - (id) init
 {
 	if (!(self = [super init])) return self;
 	self.size = 0;
 	self.reversed = NO;
-	self.array = [[NSMutableArray alloc] init];
-	[self.array release];
+	[self clear];
 	return self;
 }
 
 - (NSUInteger) count
 {
 	return self.array.count;
-}
-
-- (void) clear
-{
-	self.array = [[NSMutableArray alloc] init];
 }
 
 - (id) objectAtIndex: (NSUInteger) anIndex
