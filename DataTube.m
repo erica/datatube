@@ -9,9 +9,7 @@
 
 - (void) clear
 {
-	if (self.array) [self.array release];
-	self.array = [[NSMutableArray alloc] init];
-	[self.array release];
+	self.array = [NSMutableArray array];
 }
 
 
@@ -59,7 +57,7 @@
 
 - (void) dealloc
 {
-	[self.array release];
+	self.array = nil;
 	[super dealloc];
 }
 @end
