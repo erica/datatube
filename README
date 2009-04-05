@@ -1,0 +1,13 @@
+IRC development rooms can be funky places; sometimes people approach you with unusual questions that make you think for a bit before you realize the answer might help other developers. Take the other evening, for instance, when someone asked me whether there was an easy way to manage a table data source that could not extend beyond a certain number of cells.
+
+The developer asynchronously downloaded new items and wanted to append these to his data without going past a maximum count for an array. Normally, I'd recommend that he use an NSMutableArray as a queue, but then he pointed out one small issue: he could not guarantee whether the array would be fully populated when adding those new items.
+
+A queue doesn't know much about delaying pops. Whereas a queue takes two operators:push and pull, regardless of its contents, my class needed to use just one: push, returning the head object only when it had filled its capacity. Yes, you can emulate this with a queue by adding a lot of code checking for its size, capacity, etc but there had to be a simpler solution.
+
+Now, seriously, I spent a good deal of time googling for data types and I could not for the life of me remember what a structure like this is called so I am going to be calling it a "data tube". It's not a ring buffer. It's not a blocking queue. It's...a...whatever. 
+
+To create my DataTube, I initially subclassed NSMutableArray until I quickly remembered that you cannot inherit array-ness (to coin a word), but you can create a class that contains one. Instead, I built a simple abstract class that contained a size and an array. The size variable limits the width of the tube. The array stores, as you'd expect, the mutable array.
+
+To make the tube work, each object must pass through the tube before it's pulled out in a FIFO manner. To use this class, initialize it, set its size, and then push items onto it. You can set it to reverse the order for objectAtIndex: so your table goes either newest to oldest or vice versa.
+
+The "Hello World" code in this repository demonstrates how to use the tube as a table data source.
