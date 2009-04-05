@@ -59,7 +59,7 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[self.array release];
+	[super dealloc];
 }
 @end
