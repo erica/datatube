@@ -7,7 +7,7 @@
 
 - (void) clear
 {
-	array = [NSMutableArray array];
+	array = [[NSMutableArray array] retain];
 }
 
 

@@ -9,7 +9,7 @@
 
 @property (nonatomic) BOOL reversed;
 @property (nonatomic, readonly) NSUInteger count;
-
+- (id) initWithSize: (NSUInteger) aSize;
 - (id) push: (id) anObject;
 - (id) objectAtIndex: (NSUInteger) anIndex;
 - (void) clear;
