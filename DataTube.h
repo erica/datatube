@@ -7,9 +7,7 @@
 	NSMutableArray *array;
 }
 
-@property (nonatomic) NSUInteger	size;
 @property (nonatomic) BOOL reversed;
-@property (nonatomic, retain) NSMutableArray *array;
 @property (nonatomic, readonly) NSUInteger count;
 
 - (id) push: (id) anObject;

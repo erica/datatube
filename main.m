@@ -71,8 +71,7 @@
 											  target:self 
 											  action:@selector(performReverse)] autorelease];
 	
-	tube = [[DataTube alloc] init];
-	tube.size = 8;
+	tube = [[DataTube alloc] initWithSize:8];
 	tube.reversed = NO;
 	
 	// Timer simulates receiving new data via polling

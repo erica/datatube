@@ -3,20 +3,18 @@
 #import "DataTube.h"
 
 @implementation DataTube
-@synthesize size;
-@synthesize array;
 @synthesize reversed;
 
 - (void) clear
 {
-	self.array = [NSMutableArray array];
+	array = [NSMutableArray array];
 }
 
 
-- (id) init
+- (id) initWithSize: (NSUInteger) aSize
 {
 	if (!(self = [super init])) return self;
-	self.size = 0;
+	size = aSize;
 	self.reversed = NO;
 	[self clear];
 	return self;
@@ -24,40 +22,40 @@
 
 - (NSUInteger) count
 {
-	return self.array.count;
+	return array.count;
 }
 
 - (id) objectAtIndex: (NSUInteger) anIndex
 {
 	// out of bounds
-	if (anIndex >= self.size) return nil;
+	if (anIndex >= size) return nil;
 	
 	// not yet filled
-	if (anIndex >= self.array.count) return nil;
+	if (anIndex >= array.count) return nil;
 	
-	if (!self.reversed) return [self.array objectAtIndex:anIndex];
-	return [self.array objectAtIndex:(self.array.count - (1 + anIndex))];
+	if (!self.reversed) return [array objectAtIndex:anIndex];
+	return [array objectAtIndex:(array.count - (1 + anIndex))];
 }
 
 - (id) push: (id) anObject
 {
-	if (self.size == 0) return anObject;
+	if (size == 0) return anObject;
 	
-	if ([self.array count] < self.size)
+	if ([array count] < size)
 	{
-		[self.array addObject: anObject];
+		[array addObject: anObject];
 		return nil;
 	}
 	
-	[self.array addObject:anObject];
-	id firstObject = [[[self.array objectAtIndex:0] retain] autorelease];
-	[self.array removeObjectAtIndex:0];
+	[array addObject:anObject];
+	id firstObject = [[[array objectAtIndex:0] retain] autorelease];
+	[array removeObjectAtIndex:0];
 	return firstObject;
 }
 
 - (void) dealloc
 {
-	self.array = nil;
+	array = nil;
 	[super dealloc];
 }
 @end
