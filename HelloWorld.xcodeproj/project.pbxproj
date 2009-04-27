@@ -12,7 +12,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		8E20AFA40F8912300011F25D /* DataTube.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E20AFA30F8912300011F25D /* DataTube.m */; };
-		8ED9BAA20F866A0B0098C6AB /* NSMutableArray-DataTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9BAA10F866A0B0098C6AB /* NSMutableArray-DataTypes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,8 +24,6 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E20AFA20F8912300011F25D /* DataTube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTube.h; sourceTree = "<group>"; };
 		8E20AFA30F8912300011F25D /* DataTube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTube.m; sourceTree = "<group>"; };
-		8ED9BAA00F866A0B0098C6AB /* NSMutableArray-DataTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray-DataTypes.h"; sourceTree = "<group>"; };
-		8ED9BAA10F866A0B0098C6AB /* NSMutableArray-DataTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray-DataTypes.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +73,6 @@
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				8E20AFA20F8912300011F25D /* DataTube.h */,
 				8E20AFA30F8912300011F25D /* DataTube.m */,
-				8ED9BAA00F866A0B0098C6AB /* NSMutableArray-DataTypes.h */,
-				8ED9BAA10F866A0B0098C6AB /* NSMutableArray-DataTypes.m */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -146,7 +141,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				8ED9BAA20F866A0B0098C6AB /* NSMutableArray-DataTypes.m in Sources */,
 				8E20AFA40F8912300011F25D /* DataTube.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
