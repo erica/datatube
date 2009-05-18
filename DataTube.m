@@ -7,9 +7,9 @@
 
 - (void) clear
 {
+	[array release];
 	array = [[NSMutableArray array] retain];
 }
-
 
 - (id) initWithSize: (NSUInteger) aSize
 {
@@ -20,9 +20,20 @@
 	return self;
 }
 
+// Force initWithSize. Default size 10.
+- (id) init
+{
+	return [self initWithSize:10];
+}
+
 - (NSUInteger) count
 {
 	return array.count;
+}
+
+- (NSUInteger) size
+{
+	return size;
 }
 
 - (id) objectAtIndex: (NSUInteger) anIndex
@@ -55,7 +66,7 @@
 
 - (void) dealloc
 {
-	array = nil;
+	[array release];
 	[super dealloc];
 }
 @end

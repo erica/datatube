@@ -1,16 +1,24 @@
+/*
+ Erica Sadun, http://ericasadun.com
+ iPhone Developer's Cookbook, 3.0 Edition
+ BSD License, Use at your own risk
+ */
+
 #import <UIKit/UIKit.h>
 #import "DataTube.h"
 
-@interface TestBedController : UITableViewController
+#define COOKBOOK_PURPLE_COLOR	[UIColor colorWithRed:0.20392f green:0.19607f blue:0.61176f alpha:1.0f]
+#define BARBUTTON(TITLE, SELECTOR) 	[[[UIBarButtonItem alloc] initWithTitle:TITLE style:UIBarButtonItemStylePlain target:self action:SELECTOR] autorelease]
+
+@interface TestBedViewController : UITableViewController
 {
 	DataTube *tube;
 }
 @end
 
-@implementation TestBedController
+@implementation TestBedViewController
 
 #pragma mark UITableViewDelegate Methods
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
 	return 1;
@@ -25,7 +33,7 @@
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"generic"];
 	if (!cell) cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"generic"] autorelease];
-	cell.text = [tube objectAtIndex:[indexPath row]];
+	cell.textLabel.text = [tube objectAtIndex:[indexPath row]];
 	return cell;
 }
 
@@ -37,7 +45,6 @@
 }
 
 #pragma mark Button Actions
-
 - (void) performClear
 {
 	[tube clear];
@@ -50,26 +57,13 @@
 	[self.tableView reloadData];
 }
 
-
 #pragma mark Initialization and Cleanup
-
-- (void)loadView
+- (void) viewDidLoad
 {
-	[super loadView];
-	
 	self.title = @"DataTube Demo";
-	
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithTitle:@"Clear" 
-											   style:UIBarButtonItemStylePlain 
-											   target:self 
-											   action:@selector(performClear)] autorelease];
-	
-	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
-											  initWithTitle:@"Reverse" 
-											  style:UIBarButtonItemStylePlain 
-											  target:self 
-											  action:@selector(performReverse)] autorelease];
+	self.navigationController.navigationBar.tintColor = COOKBOOK_PURPLE_COLOR;
+	self.navigationItem.rightBarButtonItem = BARBUTTON(@"Clear", @selector(performClear));
+	self.navigationItem.leftBarButtonItem = BARBUTTON(@"Reverse", @selector(performReverse));
 	
 	tube = [[DataTube alloc] initWithSize:8];
 	tube.reversed = NO;
@@ -80,12 +74,10 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[tube release];
+	[super dealloc];
 }
 @end
-
-#pragma mark Generic Application Material
 
 @interface TestBedAppDelegate : NSObject <UIApplicationDelegate>
 @end
@@ -93,7 +85,7 @@
 @implementation TestBedAppDelegate
 - (void)applicationDidFinishLaunching:(UIApplication *)application {	
 	UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[TestBedController alloc] init]];
+	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[TestBedViewController alloc] init]];
 	[window addSubview:nav.view];
 	[window makeKeyAndVisible];
 }
