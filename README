@@ -8,8 +8,8 @@ Now, seriously, I spent a good deal of time googling for data types and I could 
 
 To create my DataTube, I initially subclassed NSMutableArray until I quickly remembered that you cannot inherit array-ness (to coin a word), but you can create a class that contains one. Instead, I built a simple abstract class that contained a size and an array. The size variable limits the width of the tube. The array stores, as you'd expect, the mutable array.
 
-To make the tube work, each object must pass through the tube before it's pulled out in a FIFO manner. To use this class, initialize it, set its size, and then push items onto it. You can set it to reverse the order for objectAtIndex: so your table goes either newest to oldest or vice versa.
+Under the new clang extensions, you can now address the tube directly, e.g. NSLog(@"%@", tube[2])
 
-The "Hello World" code in this repository demonstrates how to use the tube as a table data source.
+To make the tube work, each object must pass through the tube before it's pulled out in a FIFO manner. To use this class, initialize it, set its size, and then push items onto it. You can set it to reverse the order for objectAtIndex: so your table goes either newest to oldest or vice versa.
 
  

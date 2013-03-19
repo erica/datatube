@@ -1,20 +1,22 @@
 // Erica Sadun April 2009
+/*
+ 
+ DataTubes are fixed latency queues
+ 
+ */
 
 @interface DataTube : NSObject
-{
-	@private
-	NSUInteger size;
-	BOOL reversed;
-	NSMutableArray *array;
-}
++ (instancetype) tubeWithSize: (NSUInteger) aSize;
+- (instancetype) initWithSize: (NSUInteger) aSize;
 
-@property BOOL reversed;
-@property (readonly) NSUInteger count;
-@property (readonly) NSUInteger size;
+// Indexing
+@property (nonatomic, assign) BOOL reversed;
+@property (nonatomic, readonly) NSUInteger count;
 
-- (id) initWithSize: (NSUInteger) aSize;
+// Data access (subscripting)
+- (id) objectAtIndexedSubscript: (NSUInteger) anIndex;
+
+// Data management
 - (id) push: (id) anObject;
-- (id) objectAtIndex: (NSUInteger) anIndex;
 - (void) clear;
-
 @end

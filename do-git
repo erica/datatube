@@ -5,6 +5,9 @@ if ($#argv != 1) then
     exit 1
 endif
 
+# Copy over sources from working folder
+cp /Volumes/MusicAndData/Dev/Canon/Snap\ Pack/Data\ Tube/DataTube.[mh] .
+
 rm -rf build
 rm .DS_Store
 rm */.DS_Store

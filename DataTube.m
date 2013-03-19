@@ -2,29 +2,49 @@
 
 #import "DataTube.h"
 
-@implementation DataTube
-@synthesize reversed;
+@interface DataTube ()
+@end
 
-- (void) clear
+@implementation DataTube
 {
-	[array release];
-	array = [[NSMutableArray array] retain];
+	NSMutableArray *array;
+    NSUInteger size;
 }
 
-- (id) initWithSize: (NSUInteger) aSize
+#pragma mark - Creation and Initialization
+
+- (instancetype) initWithSize: (NSUInteger) aSize
 {
-	if (!(self = [super init])) return self;
+    self = [super init];
+    if (!self) return self;
+
 	size = aSize;
-	self.reversed = NO;
-	[self clear];
+	_reversed = NO;
+    array = [NSMutableArray array];
+
 	return self;
 }
 
-// Force initWithSize. Default size 10.
-- (id) init
+// Force initWithSize. Default size 100.
+- (instancetype) init
 {
-	return [self initWithSize:10];
+	return [self initWithSize:100];
 }
+
++ (instancetype) tubeWithSize:(NSUInteger)aSize
+{
+    DataTube *tube = [[DataTube alloc] initWithSize:aSize];
+    return tube;
+}
+
+#pragma mark - Reset
+
+- (void) clear
+{
+	array = [NSMutableArray array];
+}
+
+#pragma mark - Queries
 
 - (NSUInteger) count
 {
@@ -36,6 +56,8 @@
 	return size;
 }
 
+#pragma mark - Array Posing
+
 - (id) objectAtIndex: (NSUInteger) anIndex
 {
 	// out of bounds
@@ -44,29 +66,43 @@
 	// not yet filled
 	if (anIndex >= array.count) return nil;
 	
-	if (!self.reversed) return [array objectAtIndex:anIndex];
-	return [array objectAtIndex:(array.count - (1 + anIndex))];
+    // Not reversed
+	if (!self.reversed)
+        return array[anIndex];
+    
+    // Reverse
+    NSUInteger index = array.count - (1 + anIndex);
+	return array[index];
 }
+
+- (id) objectAtIndexedSubscript: (NSUInteger) anIndex
+{
+    return [self objectAtIndex:anIndex];
+}
+
+#pragma mark - Queue
 
 - (id) push: (id) anObject
 {
+    // Nil pushes create nulls
+    id object = anObject;
+    if (!anObject)
+        object = [NSNull null];
+    
+    // Immediately pop any object on a zero-sized tube
 	if (size == 0) return anObject;
 	
-	if ([array count] < size)
+    // Pop nil when the tube has not yet filled
+	if (array.count < size)
 	{
 		[array addObject: anObject];
 		return nil;
 	}
-	
+
+	// Push and pop
 	[array addObject:anObject];
-	id firstObject = [[[array objectAtIndex:0] retain] autorelease];
+	id firstObject = array[0];
 	[array removeObjectAtIndex:0];
 	return firstObject;
-}
-
-- (void) dealloc
-{
-	[array release];
-	[super dealloc];
 }
 @end
