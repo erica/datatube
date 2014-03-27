@@ -13,8 +13,9 @@
 @property (nonatomic, assign) BOOL reversed;
 @property (nonatomic, readonly) NSUInteger count;
 
-// Data access (subscripting)
+// Data access
 - (id) objectAtIndexedSubscript: (NSUInteger) anIndex;
+- (NSArray *) items;
 
 // Data management
 - (id) push: (id) anObject;

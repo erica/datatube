@@ -56,6 +56,11 @@
 	return size;
 }
 
+- (NSArray *) items
+{
+    return array.copy;
+}
+
 #pragma mark - Array Posing
 
 - (id) objectAtIndex: (NSUInteger) anIndex
